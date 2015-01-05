@@ -1,19 +1,16 @@
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault("counter", 0);
-
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get("counter");
-    }
-  });
-
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set("counter", Session.get("counter") + 1);
-    }
-  });
+  if (Meteor.isClient) {
+    Template.body.helpers({
+      loc: function () {
+        // return 0, 0 if the location isn't ready
+        return Geolocation.latLng() || {
+          lat: 0,
+          lng: 0
+        };
+      },
+      error: Geolocation.error
+    });
+  }
 }
 
 if (Meteor.isServer) {
