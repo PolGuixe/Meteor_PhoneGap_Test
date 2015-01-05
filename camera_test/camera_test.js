@@ -1,17 +1,20 @@
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault("counter", 0);
-
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get("counter");
+  Template.body.helpers({
+    photo: function () {
+      return Session.get("photo");
     }
   });
 
-  Template.hello.events({
+  Template.body.events({
     'click button': function () {
-      // increment the counter when button is clicked
-      Session.set("counter", Session.get("counter") + 1);
+      var cameraOptions = {
+        width: 800,
+        height: 600
+      };
+
+      MeteorCamera.getPicture(cameraOptions, function (error, data) {
+        Session.set("photo", data);
+      });
     }
   });
 }
