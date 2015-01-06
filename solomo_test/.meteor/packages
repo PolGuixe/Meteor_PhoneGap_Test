@@ -7,3 +7,12 @@
 meteor-platform
 autopublish
 insecure
+iron:router
+accounts-ui
+accounts-facebook
+google-maps
+mdg:geolocation
+ionic
+mdg:camera
+mdg:reload-on-resume
+mrt:moment
